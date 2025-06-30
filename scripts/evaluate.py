@@ -8,8 +8,8 @@ import os
 # оценка качества модели
 def evaluate_model():
     # Загрузка гиперпараметров из файла params.yaml
-    # with open('params.yaml', 'r') as fd:
-    with open('/home/mle-user/mle_projects/mle-dvc/params.yaml', 'r') as fd:
+    with open('params.yaml', 'r') as fd:
+    # with open('/home/mle-user/mle_projects/mle-dvc/params.yaml', 'r') as fd:
         params = yaml.safe_load(fd)
 
     data = pd.read_csv('data/initial_data.csv')  # Убедитесь, что у вас есть данные для оценки модели

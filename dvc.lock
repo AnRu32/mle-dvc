@@ -46,7 +46,7 @@ stages:
       size: 1083543
     - path: scripts/evaluate.py
       hash: md5
-      md5: d255895d64c86000b845eeab4986d4e5
+      md5: eab01fc7ec545b95d1f70eba57da4733
       size: 1572
     params:
       params.yaml:
@@ -60,5 +60,5 @@ stages:
     outs:
     - path: cv_results/cv_res.json
       hash: md5
-      md5: 71205b45cab4bc65a369cc5a8566cfd0
+      md5: 8d0bd81424d8ab31d732dbfcfa3a0bed
       size: 78
