@@ -20,6 +20,9 @@ stages:
       - one_hot_drop
       - auto_class_weights
       - retrain #: true
+      - model.C
+      - model.penalty
+      - model.solver
     outs:
       - models/fitted_model.pkl
   evaluate_model:

@@ -7,3 +7,8 @@ n_splits: 5
 metrics: ['f1', 'roc_auc']
 n_jobs: -1
 retrain: true
+model:
+  type: logistic_regression
+  penalty: l2
+  C: 1.0
+  solver: liblinear
