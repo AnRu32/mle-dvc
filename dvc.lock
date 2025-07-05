@@ -57,11 +57,10 @@ stages:
         - f1
         - roc_auc
         n_jobs: -1
-        n_splits: 6
-        retrain: true
+        n_splits: 10
         target_col: target
     outs:
     - path: cv_results/cv_res.json
       hash: md5
-      md5: 3d7971d4c442b472e6e0dd7bad9e4bd0
+      md5: 8d0bd81424d8ab31d732dbfcfa3a0bed
       size: 78

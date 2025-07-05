@@ -3,7 +3,14 @@ index_col: 'customer_id'
 target_col: 'target'
 one_hot_drop: 'if_binary'
 auto_class_weights: 'Balanced'
+<<<<<<< HEAD
 n_splits: 6
 metrics: ['f1', 'roc_auc']
 n_jobs: -1
 retrain: True
+=======
+n_splits: 5
+metrics: ['f1', 'roc_auc']
+n_jobs: -1
+retrain: true
+>>>>>>> base_model
