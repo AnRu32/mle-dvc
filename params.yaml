@@ -7,4 +7,9 @@ n_splits: 9
 metrics: ['f1', 'roc_auc']
 n_jobs: -1
 retrain: True
-
+model:
+  C: 1.0
+  penalty: l2
+  solver: lbfgs
+  max_iter: 1000
+  random_state: 42
