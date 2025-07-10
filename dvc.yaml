@@ -41,35 +41,35 @@ stages:
   # /home/mle-user/mle_projects/mle-dvc/Progect1/mle-project-sprint-1-v001/part2_dvc/models
   
   get_data_progect1:
-    cmd: python Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+    cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
     deps:
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+    - mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
     params:
-      - Progect1/mle-project-sprint-1-v001/params.yaml:
-        - data.retrain           # пример параметра, можете убрать, если нет параметров
+    - mle-project-sprint-1-v001/params.yaml:
+      - data.retrain
     outs:
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/data #/clean_data.csv
+    - mle-project-sprint-1-v001/part2_dvc/data
 
   fit_progect1:
-    cmd: python Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+    cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
     deps:
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/data
+    - mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+    - mle-project-sprint-1-v001/part2_dvc/data
     params:
-      - Progect1/mle-project-sprint-1-v001/params.yaml:
-        - train.iterations
-        - train.test_size
-        - train.random_state
+    - mle-project-sprint-1-v001/params.yaml:
+      - train.iterations
+      - train.test_size
+      - train.random_state
     outs:
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+    - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
 
   evaluate_progect1:
-    cmd: python Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+    cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
     deps:
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+    - mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+    - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
     params:
-      - Progect1/mle-project-sprint-1-v001/params.yaml:
-        - evaluate.metrics              # пример параметра оценки (метрика качества)
+    - mle-project-sprint-1-v001/params.yaml:
+      - evaluate.metrics
     outs:
-      - Progect1/mle-project-sprint-1-v001/part2_dvc/models/evaluation_results.json
+    - mle-project-sprint-1-v001/part2_dvc/cv_results/evaluation_results.json
