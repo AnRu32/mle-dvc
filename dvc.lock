@@ -78,74 +78,58 @@ stages:
           etag: e99b325ada0486e9967533fa5248f630
           version_id: 0006393DBB316584
   get_data_progect1:
-    cmd: python Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+    cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
     deps:
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+    - path: mle-project-sprint-1-v001/.env
       hash: md5
-      md5: ed42379debe0c42e82c097a83448fc2c
-      size: 2132
-    params:
-      Progect1/mle-project-sprint-1-v001/params.yaml:
-        data.retrain: true
+      md5: 5b6f93a1d4d848e59855296f790c112e
+      size: 235
+    - path: mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+      hash: md5
+      md5: ae01a6360043d073acb12fb322ff913a
+      size: 1902
     outs:
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/data
+    - path: mle-project-sprint-1-v001/part2_dvc/data/initial_data.csv
       hash: md5
-      files:
-      - relpath: initial_data.csv
-        md5: 7e6c1bbe23e3258853c6608406f38211
-        size: 12840563
-        cloud:
-          my_storage:
-            etag: 7e6c1bbe23e3258853c6608406f38211
-            version_id: 00063993F0CC61E6
+      md5: 7e6c1bbe23e3258853c6608406f38211
+      size: 12840563
   fit_progect1:
-    cmd: python Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+    cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
     deps:
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/data
+    - path: mle-project-sprint-1-v001/params.yaml
       hash: md5
-      files:
-      - relpath: initial_data.csv
-        md5: 7e6c1bbe23e3258853c6608406f38211
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+      md5: d890436333ddf892161c3a70fc3c4484
+      size: 275
+    - path: mle-project-sprint-1-v001/part2_dvc/data/initial_data.csv
       hash: md5
-      md5: f7781d09a273d5ed51edb1ae8a372538
-      size: 2757
-    params:
-      Progect1/mle-project-sprint-1-v001/params.yaml:
-        train.iterations: 1000
-        train.random_state: 42
-        train.test_size: 0.2
+      md5: 7e6c1bbe23e3258853c6608406f38211
+      size: 12840563
+    - path: mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+      hash: md5
+      md5: 70394ff0fa6c41b17d1ee0d37d411398
+      size: 3627
     outs:
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+    - path: mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
       hash: md5
-      md5: d88c14ac481a9452571295d6ba618ab8
-      size: 1088976
-      cloud:
-        my_storage:
-          etag: d88c14ac481a9452571295d6ba618ab8
-          version_id: 00063993F0C888E7
+      md5: 2e76bcdc2076c321cc97bb924f591407
+      size: 1119223
   evaluate_progect1:
-    cmd: python Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+    cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
     deps:
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+    - path: mle-project-sprint-1-v001/params.yaml
       hash: md5
-      md5: d88c14ac481a9452571295d6ba618ab8
-      size: 1088976
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+      md5: d890436333ddf892161c3a70fc3c4484
+      size: 275
+    - path: mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
       hash: md5
-      md5: 441888fbfe901a70c36295265a15cdaf
-      size: 2332
-    params:
-      Progect1/mle-project-sprint-1-v001/params.yaml:
-        evaluate.metrics:
-        - mae
-        - r2
+      md5: 2e76bcdc2076c321cc97bb924f591407
+      size: 1119223
+    - path: mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+      hash: md5
+      md5: 92bf69e94bacdd2004b85fdfae556591
+      size: 3337
     outs:
-    - path: Progect1/mle-project-sprint-1-v001/part2_dvc/models/evaluation_results.json
+    - path: mle-project-sprint-1-v001/part2_dvc/cv_results/evaluation_results.json
       hash: md5
       md5: 8c5e202537b508e93bdc6438366d28df
       size: 33
-      cloud:
-        my_storage:
-          etag: 8c5e202537b508e93bdc6438366d28df
-          version_id: 00063993F0C9DECA

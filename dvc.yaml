@@ -40,36 +40,63 @@ stages:
 # ---------------------------------------------------------------------------------
   # /home/mle-user/mle_projects/mle-dvc/Progect1/mle-project-sprint-1-v001/part2_dvc/models
   
+  # get_data_progect1:
+  #   cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+  #   deps:
+  #   - mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+  #   params:
+  #   - mle-project-sprint-1-v001/params.yaml:
+  #     - data.retrain
+  #   outs:
+  #   - mle-project-sprint-1-v001/part2_dvc/data
+
+  # fit_progect1:
+  #   cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+  #   deps:
+  #   - mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+  #   - mle-project-sprint-1-v001/part2_dvc/data
+  #   params:
+  #   - mle-project-sprint-1-v001/params.yaml:
+  #     - train.iterations
+  #     - train.test_size
+  #     - train.random_state
+  #   outs:
+  #   - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+
+  # evaluate_progect1:
+  #   cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+  #   deps:
+  #     - mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+  #     - mle-project-sprint-1-v001/params.yaml
+  #     - mle-project-sprint-1-v001/part2_dvc/data/initial_data.csv
+  #     - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+  #   outs:
+  #     - mle-project-sprint-1-v001/part2_dvc/cv_results/evaluation_results.json
+  #   metrics:
+  #     - mle-project-sprint-1-v001/part2_dvc/cv_results/evaluation_results.json
+
   get_data_progect1:
     cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
     deps:
-    - mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
-    params:
-    - mle-project-sprint-1-v001/params.yaml:
-      - data.retrain
+      - mle-project-sprint-1-v001/part2_dvc/scripts/data_estate.py
+      - mle-project-sprint-1-v001/.env
     outs:
-    - mle-project-sprint-1-v001/part2_dvc/data
+      - mle-project-sprint-1-v001/part2_dvc/data/initial_data.csv
 
   fit_progect1:
     cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
     deps:
-    - mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
-    - mle-project-sprint-1-v001/part2_dvc/data
-    params:
-    - mle-project-sprint-1-v001/params.yaml:
-      - train.iterations
-      - train.test_size
-      - train.random_state
+      - mle-project-sprint-1-v001/part2_dvc/scripts/fit_estate.py
+      - mle-project-sprint-1-v001/params.yaml
+      - mle-project-sprint-1-v001/part2_dvc/data/initial_data.csv
     outs:
-    - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+      - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
 
   evaluate_progect1:
     cmd: python mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
     deps:
-    - mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
-    - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
-    params:
-    - mle-project-sprint-1-v001/params.yaml:
-      - evaluate.metrics
-    outs:
-    - mle-project-sprint-1-v001/part2_dvc/cv_results/evaluation_results.json
+      - mle-project-sprint-1-v001/part2_dvc/scripts/evaluate_estate.py
+      - mle-project-sprint-1-v001/params.yaml
+      - mle-project-sprint-1-v001/part2_dvc/models/price_predictor_model.pkl
+    metrics:
+      - mle-project-sprint-1-v001/part2_dvc/cv_results/evaluation_results.json
